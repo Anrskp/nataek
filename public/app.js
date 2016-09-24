@@ -6,7 +6,7 @@ var app = angular.module('myApp', ['ngRoute']);
 app.config(function ($routeProvider) {
 	// Routing
 	$routeProvider.
-	when('/forside', {
+	when('/', {
 		templateUrl: 'views/forside.html',
 		controller: 'mainController'
 	}).
