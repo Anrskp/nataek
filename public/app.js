@@ -55,15 +55,25 @@ app.config(function ($routeProvider, $locationProvider) {
 app.controller('mainController', function($scope, $http) {
 	console.log('hello from main controller');
 
+	$scope.email = "";
+	$scope.number = "";
+
 	//get contact info
+	$http({
+		method: 'get',
+		url: '/api/getContactInfo'
+	}).then(function succesCallback(response) {
+		$scope.email = response.data.email;
+		$scope.number = response.data.number;
+	})
 
 });
 
 
 // FRONTPAGE CONTROLLER 
 app.controller('frontpageController', function($scope, $http) {
-	console.log('hello from frontpage controller');
 
+	// Get frontpage text
 	$http({
 		method: 'get',
 		url: '/api/getFrontpageTxt'
@@ -96,7 +106,6 @@ app.controller('aboutUsController', function($scope, $http) {
 
 // PRICE CALC. CONTROLLER
 app.controller('priceController', function($scope, $http) {
-	console.log('hello from price controller')
 
 	// ng-models for clients input (house width and length)
 	$scope.houseWidth = "";
@@ -121,6 +130,11 @@ app.controller('priceController', function($scope, $http) {
 		var lengthPrice = $scope.prices.lengthPrice;
 		var widthPrice = $scope.prices.widthPrice;
 		
+		//convert comma to dot for float numbers.
+		$scope.houseLength = $scope.houseLength.replace(',','.');
+		$scope.houseWidth = $scope.houseWidth.replace(',','.');
+		
+		// result
 		$scope.currentPrice = +($scope.houseLength * lengthPrice) + +($scope.houseWidth * widthPrice);
 
 	}
@@ -129,7 +143,6 @@ app.controller('priceController', function($scope, $http) {
 
 // IMAGE CONTROLLER
 app.controller('imageController', function($scope, $http) {
-	console.log('hello from image controller');
 
 	$scope.imageSrcArray = [];
 
@@ -160,7 +173,6 @@ app.controller('loginController', function($scope, $http) {
 
 // ADMIN CONTROLLER
 app.controller('adminController', function($scope, $http, $location) {	
-	console.log('admin controller active');
 	
 	// authCheck
 	var loggedIn = true;
