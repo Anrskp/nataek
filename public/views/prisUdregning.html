@@ -1,0 +1,32 @@
+
+<div style="container">
+  <div class="row">
+    <h1 style="text-align: center; margin-bottom: 40px;"> Pris udregning </h1>
+    <div class="col-md-2"></div>
+    <div class="col-md-4">
+    
+    Her kan du udregne en vejledende pris, ved at indtaste din hus brede og længde til højre. Vær opmærksom på at dette kun er et vejledende bud, eftersom andre ting kan komme i betragtning, såsom beliggenhed. 
+    
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-2" style="background-color: lightgrey;"> 
+
+      <form>
+        <div class="form-group">
+          <label> Hus Længde i meter: </label>
+          <input ng-model="houseLength" type="text" class="form-control" id="">
+
+          <label> Rygning i meter: </label>
+          <input ng-model="houseWidth" type="text" class="form-control" id="">
+          
+          <button type="button" class="btn btn-success" ng-click="calcPrice()"> Udregn pris </button>
+
+          <p> {{currentPrice}} kr ,- </p>
+
+        </div>
+      </form>
+
+    </div> 
+    <div class="col-md-2"></div>
+  </div>
+

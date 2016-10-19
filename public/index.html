@@ -3,34 +3,49 @@
 <head lang="en">
   <meta charset="UTF-8">
   <title> NATAEK </title>
-  
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <base href="/">  
+  <!-- todo: get local -->
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> 
   <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
   <script type="text/javascript" src="javascripts/angular-min-v158.js"></script>
   <script type="text/javascript" src="javascripts/angular-route-min-v158.js"></script>
   <script type="text/javascript" src="app.js"></script>
-
 </head>
 <body>
 
   <div ng-app="myApp" ng-controller="mainController"> 
 
-  <!-- 
+  <!-- page navigation-->
+  <nav class="navbar navbar-default" style="max-width: 1000px; margin: 0 auto;">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#/"><b>NA-TÆK</b></a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li><a href="#forside"> Forside </a></li>
+          <li><a href="#omOs"> Om os </a></li>
+          <li><a href="#billeder"> Billeder </a></li>
+          <li><a href="#prisUdregning"> Pris udregning </a></li>
+          <li><a href="#kontakt"> Kontakt </a></li>
+          <li><a href="#admin"> Admin </a></li>
+        </ul>
+      </div>
+  </nav>
   
-  - navbar
-  
-  - image/logo
+  <!-- img logo banner -->
+  <div style="height: 300px; max-width: 1000px; background-image: url('/banner.JPG'); margin: 0 auto;"></div>
 
-  - view
+  <!-- view --> 
+  <div class="viewStyle" ng-view> </div>
 
-  - footer
 
-  -->  
-  
-  <div ng-view> </div>
-
+  <!-- footer -->
+      <div id="footer">
+      <div class="container">
+        <p class="text-muted credit">NATÆK Helsinge 3200 <a href="">Facebook</a> - <a href=""> Twitter</a></p>
+      </div>
+    </div> 
   </div>
-
 
 </body>
 </html> 

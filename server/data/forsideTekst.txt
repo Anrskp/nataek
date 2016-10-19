@@ -1,0 +1,5 @@
+Hej og velkommen til NA-TÆK
+
+Her er noget mere tekst hvor der kan stå alt hvad hjertet begære. Denne tekest kan redigeres under admin viewet, hvis du er logget ind. 
+
+Tak for besøget.

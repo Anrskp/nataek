@@ -1,0 +1,7 @@
+<h1> billeder </h1>
+
+<div ng-repeat="images in imageSrcArray" class="row">
+    <div ng-repeat="image in images" class="col-md-4">
+			<img class="img-thumbnail" ng-src="images/{{image}}">
+    </div>
+</div>
