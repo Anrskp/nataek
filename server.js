@@ -130,7 +130,7 @@ app.post('/api/updatePrices', function(req, res) {
 
 });
 
-// Get images
+// Get images names
 app.get('/api/getImages', function(req, res) {
 	var files = fs.readdirSync('public/images');
 	

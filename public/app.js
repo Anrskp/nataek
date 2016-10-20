@@ -192,6 +192,7 @@ app.controller('adminController', function($scope, $http, $location) {
   $scope.emailModel = "";
   $scope.phoneNumberModel = "";
 
+  $scope.aboutUsUpdated = false;
 
 	// update frontpage text
 	$scope.updateFrontpageTxt = function() {
@@ -215,6 +216,7 @@ app.controller('adminController', function($scope, $http, $location) {
 
 		$http.post('/api/updateAboutUsTxt', textToUpdate).then(function(succes) {
 			console.log('updated aboutUstext succesfully!')
+			$scope.aboutUsUpdated = true;
 		});
 	};
 	

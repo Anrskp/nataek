@@ -20,6 +20,7 @@
 				<label for="comment"> Update about us text: </label>
 				<textarea ng-model="aboutUsTextModel" class="form-control" style="resize: none;" rows="7"></textarea>
 				<button type="button" class="btn btn-success" ng-click="updateAboutUsTxt()"> Save </button>
+				<span ng-show="aboutUsUpdated"> updated! </span>
 			</div>
 		</form>
 	</div>
@@ -28,11 +29,12 @@
 
 <h1 style="text-align: center; margin-bottom: 40px;"> Update contact Info </h1>
 
+<!-- UPDATE CONTACT INFO AND PRICES -->
 <div class="row">
 <div class="col-md-2"></div>
+
 <!-- update contact info -->
 <div class="col-md-4">
-
 	<form>
 		<div class="form-group">
 		<label> email: </label>
