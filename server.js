@@ -1,15 +1,10 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
 var fs = require('fs');
 var multer  = require('multer');
 var upload = multer({ dest: 'public/images/' });
 
 var app = express();
-
-
-// db connection - using raw txt files instead. 
-//mongoose.connect('mongodb://drajz:hej@ds041546.mlab.com:41546/nataek');
 
 app.use(express.static('public'));
 

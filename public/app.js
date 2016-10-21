@@ -9,11 +9,11 @@ app.config(function ($routeProvider, $locationProvider) {
 	$routeProvider.
 	when('/', {
 		templateUrl: 'views/forside.html',
-		controller: 'frontpageController'
+//		controller: 'frontpageController'
 	}).
 	when('/omOs', {
 		templateUrl: 'views/omOs.html',
-		controller: 'aboutUsController'
+//		controller: 'aboutUsController'
 	}).
 	when('/billeder', {
 		templateUrl: 'views/billeder.html',
@@ -27,13 +27,13 @@ app.config(function ($routeProvider, $locationProvider) {
 		templateUrl: 'views/kontakt.html',
 		controller: 'mainController'
 	}).
+	when('/adminLogin', {
+		templateUrl: 'views/adminLogin.html',
+		controller: 'loginController'
+	}).
 	when('/admin', {
 		templateUrl: 'views/admin.html',
 		controller: 'adminController'
-	}).
-	when('/adminLogin', {
-		templateUrl: 'views/adminLogin.html',
-		controller: 'adminLoginController.html'
 	}).
 	otherwise({
 		redirectTo: '/'
@@ -58,18 +58,42 @@ app.controller('mainController', function($scope, $http) {
 	$scope.email = "";
 	$scope.number = "";
 
-	//get contact info
+	// Get contact info
 	$http({
 		method: 'get',
 		url: '/api/getContactInfo'
 	}).then(function succesCallback(response) {
 		$scope.email = response.data.email;
 		$scope.number = response.data.number;
-	})
+	}), function errorCallback(response) {
+		console.log(response);
+	}
+
+	// Get frontpage text
+	$http({
+		method: 'get',
+		url: '/api/getFrontpageTxt'
+	}).then(function succesCallback(response) {
+		$scope.frontpageTxt = response.data;
+
+	}, function errorCallback(response) {
+		console.log(response);
+	});
+
+	// Get about us text
+	$http({
+		method: 'get',
+		url: '/api/getAboutUsTxt'
+	}).then(function succesCallback(response) {
+		$scope.aboutUsText = response.data;
+
+	}, function errorCallback(response) {
+		console.log(response);
+	});
 
 });
 
-
+/*
 // FRONTPAGE CONTROLLER 
 app.controller('frontpageController', function($scope, $http) {
 
@@ -91,6 +115,7 @@ app.controller('frontpageController', function($scope, $http) {
 app.controller('aboutUsController', function($scope, $http) {
 	console.log('hello from main controller');
 
+	// Get about us text
 	$http({
 		method: 'get',
 		url: '/api/getAboutUsTxt'
@@ -102,7 +127,7 @@ app.controller('aboutUsController', function($scope, $http) {
 	})
 
 });
-
+*/
 
 // PRICE CALC. CONTROLLER
 app.controller('priceController', function($scope, $http) {
@@ -180,15 +205,15 @@ app.controller('adminController', function($scope, $http, $location) {
 		$location.path("/");
 	}
 
-	//ng-model to edit frontpage textarea
-	$scope.frontPageTextModel = "";
-  $scope.aboutUsTextModel = "";
+	// ng-model to edit frontpage textarea
+	$scope.frontPageTextModel = $scope.frontpageTxt;
+  $scope.aboutUsTextModel = $scope.aboutUsText;
 
-  //ng-model for prices
+  // ng-model for prices
   $scope.widthPriceModel = "";
   $scope.lengthPriceModel = "";
 
-  //ng model for contact info
+  // ng model for contact info
   $scope.emailModel = "";
   $scope.phoneNumberModel = "";
 
