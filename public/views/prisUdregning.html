@@ -5,7 +5,8 @@
     <div class="col-md-2"></div>
     <div class="col-md-4">
     
-    Her kan du udregne en vejledende pris, ved at indtaste din hus brede og længde til højre. Vær opmærksom på at dette kun er et vejledende bud, eftersom andre ting kan komme i betragtning, såsom beliggenhed. 
+    Her kan du udregne en vejledende pris, ved at indtaste dit tag areal (tag i kvm) samt rygning (længde på tag) til højre.<br><br>
+    Vær opmærksom på at dette kun er et vejledende bud, eftersom andre ting kan komme i betragtning, såsom beliggenhed. 
     
     </div>
     <div class="col-md-2"></div>
@@ -13,14 +14,14 @@
 
       <form>
         <div class="form-group">
-          <label> Hus Længde i meter: </label>
+          <label> rygning i meter: </label>
           <input ng-model="houseLength" type="text" class="form-control" id="">
 
-          <label> Rygning i meter: </label>
-          <input ng-model="houseWidth" type="text" class="form-control" id="">
+          <label> tag areal kvm: </label>
+          <input ng-model="houseKvm" type="text" class="form-control" id="">
           
           <button type="button" class="btn btn-success" ng-click="calcPrice()"> Udregn pris </button>
-
+          
           <p> {{currentPrice}} kr ,- </p>
 
         </div>

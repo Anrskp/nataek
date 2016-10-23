@@ -1,14 +1,15 @@
-<h1 style="text-align: center; margin-bottom: 40px;"> Update texts </h1>
+<h1 style="text-align: center; margin-bottom: 40px;"> Redigere forside / om os tekst. </h1>
 <div class="row">
-
-	<!-- update frontpage text -->
 	<div class="col-md-2"></div>
+	
+	<!-- update frontpage text -->
 	<div class="col-md-4">
 		<form>
 			<div class="form-group">
-				<label for="comment"> Update frontpage text: </label>
+				<label for="comment"> forside tekst: </label>
 				<textarea ng-model="frontPageTextModel" class="form-control" style="resize: none;" rows="7"></textarea>
 				<button type="button" class="btn btn-success" ng-click="updateFrontpageTxt()"> Save </button>
+				<span ng-show="frontpageUpdated.updated"> {{frontpageUpdated.msg}} </span>
 			</div>
 		</form>
 	</div>
@@ -17,19 +18,18 @@
 	<div class="col-md-4">
 		<form>
 			<div class="form-group">
-				<label for="comment"> Update about us text: </label>
+				<label for="comment"> om os tekst: </label>
 				<textarea ng-model="aboutUsTextModel" class="form-control" style="resize: none;" rows="7"></textarea>
 				<button type="button" class="btn btn-success" ng-click="updateAboutUsTxt()"> Save </button>
-				<span ng-show="aboutUsUpdated"> updated! </span>
+				<span ng-show="aboutUsUpdated.updated"> {{aboutUsUpdated.msg}} </span>
 			</div>
 		</form>
 	</div>
 	<div class="col-md-2"></div>
 </div>
 
-<h1 style="text-align: center; margin-bottom: 40px;"> Update contact Info </h1>
+<h1 style="text-align: center; margin-bottom: 40px;"> Redigere kontakt info </h1>
 
-<!-- UPDATE CONTACT INFO AND PRICES -->
 <div class="row">
 <div class="col-md-2"></div>
 
@@ -41,8 +41,9 @@
 			<input ng-model="emailModel" type="text" class="form-control">
 			
 		<label> number: </label>
-			<input ng-model="phoneNumberModel"type="text" class="form-control">
+			<input ng-model="phoneNumberModel" type="text" class="form-control">
 			<button type="button" class="btn btn-success" ng-click="updateContactInfo()"> Save </button>
+			<span ng-show="contactInfoUpdated.updated"> {{contactInfoUpdated.msg}} </span>
 		</div>
 	</form>	
 </div>
@@ -51,26 +52,25 @@
 <div class="col-md-4">
       <form>
         <div class="form-group">
-          <label> lændge pris: </label>
-          <input ng-model="lengthPriceModel" type="number" class="form-control">
+          <label> meter pris: </label>
+          <input ng-model="lengthPriceModel" class="form-control">
      
-          <label> brede pris: </label>
-          <input ng-model="widthPriceModel" type="number" class="form-control">
-        	<button type="button" class="btn btn-success" ng-click="updatePrices()"> Save </button>	
+          <label> kvm pris: </label>
+          <input ng-model="kvmPriceModel" class="form-control">
+        	<button type="button" class="btn btn-success" ng-click="updatePrices()"> Save </button>
+        	<span ng-show="pricesUpdated.updated"> {{pricesUpdated.msg}} </span>
         </div>
       </form>	
 </div>
 <div class="col-md-2"></div>
 </div>
 
-
-<h1 style="text-align: center; margin-bottom: 40px;"> Upload/Delete image </h1>
-
-<!-- upload new image(s) -->
+<!-- upload new image -->
+<h1 style="text-align: center; margin-bottom: 40px;"> Upload image </h1>
 <div class="row">
 	<div class="col-md-2"></div>
 	<div class="col-md-6">
-		<label for="comment"> Upload image </label>
+		<label for="comment"> Upload billede </label>
 		<form method="post" enctype="multipart/form-data" action="/api/upload">
 			<input type="file" name="newImage">
 			<input type="submit" name="submit" value="submit">
@@ -80,3 +80,11 @@
 </div>
 
 <!-- delete images -->
+<h1 style="text-align: center; margin-bottom: 40px;"> Slet billeder </h1>
+<div ng-repeat="images in imageSrcArray" class="row">
+<div class="col-md-2"></div>
+    <div ng-repeat="image in images" class="col-md-2">
+			<img class="img-thumbnail" ng-src="images/{{image}}" id={{image}}>
+			<button ng-click="deleteImage(image)" id="btn{{image}}"> Delete </button>
+    </div>
+</div>

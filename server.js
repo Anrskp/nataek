@@ -89,7 +89,7 @@ app.post('/api/updateContactInfo', function(req, res) {
 	var newContactInfo = req.body.email + "," + req.body.number;
 	fs.writeFile('server/data/kontaktInfo.txt', newContactInfo, function() {
 		console.log('updated kontaktInfo.txt successfully')
-		res.end('{"success" : "Updated successfully", "status" : 200}');
+		res.end('{"success" : updated kontaktInfo.txt successfully", "status" : 200}');
 
 	})
 })
@@ -97,18 +97,18 @@ app.post('/api/updateContactInfo', function(req, res) {
 
 
 // Get prices
-// format : 'width,length'
+// format : 'width price, length price'
 app.get('/api/getPrices', function(req, res) {
 	fs.readFile('server/data/priser.txt', 'utf8', function (err, data) {
 		if (err) {
 			return console.log(err);
 		}
 		
-		var dataOpdelt = data.split(',');
+		var dataOpdelt = data.split('-');
 
 		var prices = {
-			lengthPrice : parseInt(dataOpdelt[0]),
-			widthPrice :  parseInt(dataOpdelt[1])
+			lengthPrice : parseFloat(dataOpdelt[0]),
+			kvmPrice :  parseFloat(dataOpdelt[1])
 		};
 
 		res.send(prices);
@@ -118,9 +118,10 @@ app.get('/api/getPrices', function(req, res) {
 // Update prices
 app.post('/api/updatePrices', function(req, res) {
 
-	var newPrices = req.body.widthPrice + "," + req.body.lengthPrice;
+	var newPrices = req.body.KvmPrice + "-" + req.body.lengthPrice;
 	fs.writeFile('server/data/priser.txt', newPrices, function() {
 		console.log('updated priser.txt succesfully')
+		res.send('{"success" : "updated priser.txt succesfully", "status" : 200}');	
 	})
 
 });
@@ -137,12 +138,39 @@ app.post('/api/upload', upload.any(), function(req, res) {
 	console.log('new image was uploaded: ');
 	console.log(req.files);
 
-	res.end('{"success" : "uploaded image Successfully", "status" : 200}');
+	res.send('{"success" : "uploaded image Successfully", "status" : 200}');
 });
 
 // Delete image.
+app.post('/api/deleteImage', function(req, res) {
+	console.log(req.body)
+	var imageSrc = req.body.src;
+	fs.unlink('public/images/' + imageSrc, function() {
+		
+	res.send(true)
+	});
+
+})
 
 // Login Auth.
-app.get('/api/', function(req, res) {
-	// todo
+app.post('/api/login', function(req, res) {
+	
+	var user = req.body;	
+	
+	fs.readFile('server/data/login.txt', 'utf8', function(err, data) {
+		if(err) {
+			return console.log(err)
+		}
+
+		var dataOpdelt = data.split(',');
+		var username = dataOpdelt[0];
+		var password = dataOpdelt[1];
+
+		if(user.username == username && user.password == password) {
+			res.send(true);
+		} else {
+			res.send(false);
+		}
+	});
+
 });

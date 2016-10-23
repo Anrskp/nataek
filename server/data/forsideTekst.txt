@@ -1,1 +1,7 @@
-hej
+Velkommen til NA TAEK
+
+Her på siden finder du billeder, en prisudregning, og et admin view hvor indeholdet på siden kan ændres, tilføjes flere billedere og slette dem. 
+
+Der er brugt nodejs som backend og angular til frontend.
+
+Twitter bootstrap for styling og ingen view engine men blot almindelig HTML5 markup.
